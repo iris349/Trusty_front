@@ -58,17 +58,7 @@ function ReportPage() {
       </div>
       
       {/* 상단 네비게이션 메뉴바 */}
-      <div style={{ width: "1439.98px", left: "0px", top: "16px", position: "absolute", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", display: "inline-flex" }}>
-        <div style={{ width: "1280px", justifyContent: "flex-start", alignItems: "center", gap: "143px", display: "inline-flex" }}>
-          <div style={{ width: "151px", height: "74px", color: "black", fontSize: "36px", fontFamily: "Inter", fontWeight: 400 }}>Trusty</div>
-          <div style={{ color: "black", fontSize: "32px", fontFamily: "Inter", fontWeight: 400 }}>홈</div>
-          <div style={{ width: "97px", height: "38px", color: "black", fontSize: "32px", fontFamily: "Inter", fontWeight: 400 }}>제보창</div>
-          <div style={{ color: "black", fontSize: "32px", fontFamily: "Inter", fontWeight: 400 }}>커뮤니티창</div>
-          <div style={{ color: "black", fontSize: "32px", fontFamily: "Inter", fontWeight: 400 }}>로그인</div>
-          <img style={{ width: "50px", height: "50px" }} src="https://placehold.co/50x50" alt="profile" />
-        </div>
-        <div style={{ alignSelf: "stretch", height: "0px", outline: "1px black solid", outlineOffset: "-0.50px" }}></div>
-      </div>
+      <Navbar />
     </div>
   );
 }
