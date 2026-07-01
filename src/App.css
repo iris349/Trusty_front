@@ -1,0 +1,98 @@
+/* ==========================================================================
+   Trusty 프로젝트 원래 디자인 색상 및 고유 배치 가이드 (완벽 복구 버전)
+   ========================================================================== */
+
+/* 1. 공통 폰트 및 기본 세팅 */
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=IBM+Plex+Mono:wght@400&family=Caveat&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F8FAFC;
+  color: #0F172A;
+}
+
+/* 2. 각 페이지별 원래 배경색 및 버튼 색상 매핑 */
+
+/* [메인 배경 카드 구역] */
+.bg-light-blue-card {
+  background: rgba(218, 236, 254, 0.80) !important;
+}
+
+/* [민트색 버튼 - 분석 시작, 분석하기, 검색, 파일 찾기, 제보 접수 버튼] */
+.btn-original-mint {
+  background: #73ECFC !important;
+}
+
+/* [그라디언트 포인트 버튼 - Trusty 시그니처 스타일] */
+.btn-trusty-gradient {
+  background: linear-gradient(135deg, #73ECFC 0%, #0088FF 100%) !important;
+  color: white !important;
+  transition: all 0.2s ease;
+}
+.btn-trusty-gradient:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* [하늘색 버튼/텍스트 - 정밀 분석 요약 보기, URL위험도 타이틀 등] */
+.btn-original-cyan {
+  background: #22D3EE !important;
+}
+.text-original-cyan {
+  color: #22D3EE !important;
+}
+
+/* [대시보드 및 리포트 카드 배경색] */
+.bg-original-gray {
+  background: #F1F4F9 !important;
+}
+
+/* [입력창 및 검색창 배경색] */
+.bg-original-input-gray {
+  background: rgba(217, 217, 217, 0.50) !important;
+}
+
+/* [로그인 버튼 배경색] */
+.bg-original-blue {
+  background: #0088FF !important;
+}
+
+/* [상태값 텍스트 색상] */
+.text-original-danger {
+  color: #FB1919 !important; /* 신고됨(위험) */
+}
+.text-original-safe {
+  color: #34C759 !important; /* 신고됨(안전) */
+}
+.text-original-warn {
+  color: #FFCC33 !important; /* 권장 조치 사항 */
+}
+.text-original-orange {
+  color: #FF8D28 !important; /* 상세보기 */
+}
+.text-original-muted {
+  color: #64748B !important; /* 서브 액션 링크 */
+}
+
+/* 3. 공통 레이아웃 컴포넌트용 클래스 */
+.page-container {
+  width: 100%;
+  min-height: 1024px;
+  display: flex;
+  justify-content: center;
+  background: #F8FAFC;
+}
+
+.page-content-frame {
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}

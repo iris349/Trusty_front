@@ -1,64 +1,93 @@
-// src/pages/ReportPage.jsx
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 function ReportPage() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const currentType = location.state?.type || "sms"; 
+  const fileInputRef = useRef(null);
+  const [linkInput, setLinkInput] = useState("");
+  const [selectedType, setSelectedType] = useState(currentType);
+
   return (
-    <div style={{ width: "1440px", height: "1024px", position: "relative", background: "white", overflow: "hidden" }}>
-      {/* 상세 정보 입력 박스 */}
-      <div style={{ width: "680px", height: "90px", left: "121px", top: "585px", position: "absolute", background: "white", borderRadius: "17px", border: "2px #D9D9D9 solid" }}></div>
-      <div style={{ width: "287px", height: "34px", left: "121px", top: "489px", position: "absolute", color: "black", fontSize: "30px", fontFamily: "Inter", fontWeight: 600 }}>제보 상세 정보 입력</div>
-      
-      {/* 파일 업로드 드롭존 영역 */}
-      <div style={{ width: "1176px", height: "182px", left: "121px", top: "744px", position: "absolute", background: "rgba(217, 217, 217, 0.50)", borderRadius: "24px" }}></div>
-      <div style={{ width: "38px", height: "53px", left: "448px", top: "793px", position: "absolute", overflow: "hidden" }}>
-        <div style={{ width: "7.92px", height: "11.04px", left: "23.75px", top: "6.63px", position: "absolute", outline: "2px black solid" }}></div>
-        <div style={{ width: "7.92px", height: "11.04px", left: "23.75px", top: "6.63px", position: "absolute", outline: "2px black solid" }}></div>
-        <div style={{ width: "22.17px", height: "39.75px", left: "9.50px", top: "6.63px", position: "absolute", outline: "2px black solid" }}></div>
-        <div style={{ width: "9.50px", height: "6.63px", left: "4.75px", top: "26.50px", position: "absolute", outline: "2px black solid" }}></div>
+    <div style={{ width: "100%", minHeight: "1024px", background: "#F8FAFC", display: "flex", justifyContent: "center", position: "relative" }}>
+      <div style={{ width: "1440px", height: "1024px", position: "relative", overflow: "hidden", background: "white" }}>
+        <Navbar />
+
+        {/* 타이틀 헤더 */}
+        <div style={{ width: "1100px", left: "170px", top: "150px", position: "absolute" }}>
+          <h2 style={{ fontSize: "36px", fontWeight: 800, color: "#0F172A", margin: "0 0 8px 0" }}>피싱 사기 제보하기</h2>
+          <p style={{ fontSize: "16px", color: "#64748B", margin: 0 }}>받으신 위험 메시지 유형을 선택하고 정보를 입력해 주세요.</p>
+        </div>
+
+        {/* 3가지 타입 셀렉터 카드 */}
+        <div style={{ width: "1100px", left: "170px", top: "240px", position: "absolute", display: "flex", gap: "25px" }}>
+          {[
+            { id: "phone", title: "전화 제보", desc: "보이스피싱, ARS 금융기관 사칭 전화를 받은 경우" },
+            { id: "sms", title: "문자 (URL 포함)", desc: "스미싱 인증번호 유도 및 택배 주소 사기 문자의 경우" },
+            { id: "email", title: "이메일 피싱", desc: "포털 사이트 사칭 악성 링크 유도 메일을 받은 경우" }
+          ].map((item) => (
+            <div 
+              key={item.id}
+              onClick={() => setSelectedType(item.id)}
+              style={{
+                flex: 1, height: "140px", background: "white", borderRadius: "24px", padding: "24px", boxSizing: "border-box",
+                border: selectedType === item.id ? "2px #0088FF solid" : "1px #E2E8F0 solid",
+                boxShadow: selectedType === item.id ? "0 10px 25px -5px rgba(0, 136, 255, 0.1)" : "none",
+                cursor: "pointer", transition: "all 0.2s"
+              }}
+            >
+              <div style={{ fontSize: "20px", fontWeight: 700, color: selectedType === item.id ? "#0088FF" : "#1E293B", marginBottom: "8px" }}>{item.title}</div>
+              <div style={{ fontSize: "14px", color: "#64748B", lineHeight: "1.5" }}>{item.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* 입력 상세 정보 카드 폼 */}
+        <div style={{ width: "1100px", left: "170px", top: "420px", position: "absolute", background: "white", borderRadius: "32px", border: "1px #E2E8F0 solid", padding: "40px", boxSizing: "border-box", boxShadow: "0 20px 40px -15px rgba(15,23,42,0.05)" }}>
+          
+          <div style={{ marginBottom: "30px" }}>
+            <label style={{ display: "block", fontSize: "18px", fontWeight: 700, color: "#1E293B", marginBottom: "12px" }}>이메일 ID 또는 휴대폰 번호 링크 정보</label>
+            <input 
+              type="text"
+              placeholder="여기에 의심스러운 URL 주소나 발신 IP 주소를 입력하세요..."
+              value={linkInput}
+              onChange={(e) => setLinkInput(e.target.value)}
+              style={{ width: "100%", height: "60px", background: "#F8FAFC", borderRadius: "14px", border: "1px #E2E8F0 solid", outline: "none", padding: "0 20px", boxSizing: "border-box", fontSize: "16px" }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: "block", fontSize: "18px", fontWeight: 700, color: "#1E293B", marginBottom: "12px" }}>통화·문자 내역 증거 스크린샷 캡쳐</label>
+            
+            {/* 고급 업로드 드롭존 박스 (이미지 삭제 및 텍스트 중앙 정렬) */}
+            <div style={{ width: "100%", height: "180px", background: "rgba(115, 236, 252, 0.04)", border: "2px dashed #73ECFC", borderRadius: "20px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", position: "relative" }}>
+              <div style={{ color: "#0088FF", fontSize: "16px", fontWeight: 600, marginBottom: "4px" }}>증거 파일 드래그 또는 마우스 선택</div>
+              <div style={{ color: "#94A3B8", fontSize: "13px" }}>필수 포함 정보: 발신 전화번호, 수신 일자 및 규격 시각</div>
+              
+              <button 
+                onClick={() => fileInputRef.current.click()}
+                style={{ marginTop: "16px", background: "#0F172A", color: "white", border: "none", padding: "8px 20px", borderRadius: "10px", fontSize: "14px", fontWeight: 600, cursor: "pointer" }}
+              >
+                파일 찾기
+              </button>
+              <input type="file" ref={fileInputRef} style={{ display: 'none' }} onChange={(e) => { if(e.target.files[0]) alert(`${e.target.files[0].name} 파일 탑재 완료`); }} />
+            </div>
+          </div>
+
+          {/* 최종 제보 제출 버튼 */}
+          <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "35px" }}>
+            <button 
+              onClick={() => { alert("제보가 안전하게 접수되었습니다."); navigate('/'); }}
+              style={{ width: "200px", height: "56px", background: "linear-gradient(135deg, #73ECFC 0%, #0088FF 100%)", border: "none", borderRadius: "16px", color: "white", fontSize: "18px", fontWeight: 700, cursor: "pointer", boxShadow: "0 10px 20px -5px rgba(0, 136, 255, 0.2)" }}
+            >
+              제보 등록하기
+            </button>
+          </div>
+
+        </div>
       </div>
-      
-      {/* 폼 텍스트 레이블 및 가이드라인 */}
-      <div style={{ width: "524px", height: "32px", left: "121px", top: "551px", position: "absolute", color: "black", fontSize: "24px", fontFamily: "Inter", fontWeight: 500 }}>이메일*문자 내 링크/IP 주소</div>
-      <div style={{ width: "248px", height: "34px", left: "121px", top: "710px", position: "absolute", color: "black", fontSize: "24px", fontFamily: "Inter", fontWeight: 500 }}>통화*문자 내역 캡쳐</div>
-      <div style={{ width: "308px", height: "28px", left: "500px", top: "809px", position: "absolute", color: "#0088FF", fontSize: "24px", fontFamily: "Inter", fontWeight: 400 }}>파일 드래그 또는 선택</div>
-      <div style={{ width: "586px", height: "29px", left: "348px", top: "852px", position: "absolute", color: "black", fontSize: "24px", fontFamily: "Inter", fontWeight: 400 }}>필수 정보: 발신 전화번호, 수신일자 및 시각, 수신 표시</div>
-      
-      {/* 파일 찾기 버튼 */}
-      <div style={{ width: "246px", height: "70px", left: "976px", top: "805px", position: "absolute", background: "#73ECFC", borderRadius: "20px", cursor: "pointer" }}></div>
-      <div style={{ width: "119px", height: "24px", left: "1051px", top: "828px", position: "absolute", color: "black", fontSize: "24px", fontFamily: "Inter", fontWeight: 600, pointerEvents: "none" }}>파일 찾기</div>
-      
-      {/* 제보 유형 선택 그룹 배경 (전화 / 문자 / 이메일) */}
-      <div style={{ width: "1209px", height: "351px", left: "88px", top: "119px", position: "absolute" }}>
-        <div style={{ width: "362.70px", height: "349.95px", left: "0px", top: "1.05px", position: "absolute", background: "rgba(217, 217, 217, 0.50)", borderRadius: "50px" }}></div>
-        <div style={{ width: "363.70px", height: "349.95px", left: "419.65px", top: "0px", position: "absolute", background: "rgba(217, 217, 217, 0.50)", borderRadius: "50px", border: "3px #73ECFC solid" }}></div>
-        <div style={{ width: "362.70px", height: "349.95px", left: "846.30px", top: "1.05px", position: "absolute", background: "rgba(217, 217, 217, 0.50)", borderRadius: "50px" }}></div>
-      </div>
-      
-      {/* 카드 1: 전화 */}
-      <div style={{ width: "88px", height: "49px", left: "187px", top: "199px", position: "absolute", color: "black", fontSize: "24px", fontFamily: "Inter", fontWeight: 400 }}>전화</div>
-      <div style={{ width: "266px", height: "63px", left: "139px", top: "278px", position: "absolute", color: "rgba(0, 0, 0, 0.65)", fontSize: "20px", fontFamily: "Inter", fontWeight: 400 }}>전화통화, ARS 통하로 기관/대출/수사 등을 받은 경우</div>
-      <div style={{ width: "41px", height: "50px", left: "139px", top: "194px", position: "absolute", overflow: "hidden" }}>
-        <div style={{ width: "33.32px", height: "38.54px", left: "5.55px", top: "2.61px", position: "absolute", background: "black" }}></div>
-      </div>
-      
-      {/* 카드 2: 문자(URL 포함) */}
-      <div style={{ width: "190px", height: "35px", left: "611px", top: "199px", position: "absolute", color: "black", fontSize: "24px", fontFamily: "Inter", fontWeight: 400 }}>문자(URL 포함)</div>
-      <div style={{ width: "265px", height: "95px", left: "560px", top: "278px", position: "absolute", color: "rgba(0, 0, 0, 0.65)", fontSize: "20px", fontFamily: "Inter", fontWeight: 400 }}>문자로 인증번호 및 결제 안내를 받거나 URL이 포함된 경우</div>
-      <div style={{ width: "42px", height: "42px", left: "554px", top: "189px", position: "absolute", overflow: "hidden" }}>
-        <div style={{ width: "35px", height: "34.99px", left: "3.50px", top: "3.51px", position: "absolute", background: "black" }}></div>
-      </div>
-      
-      {/* 카드 3: 이메일(URL 포함) */}
-      <div style={{ width: "222px", height: "35px", left: "1030px", top: "199px", position: "absolute", color: "black", fontSize: "24px", fontFamily: "Inter", fontWeight: 400 }}>이메일(URL 포함)</div>
-      <div style={{ width: "266px", height: "95px", left: "978px", top: "278px", position: "absolute", color: "rgba(0, 0, 0, 0.65)", fontSize: "20px", fontFamily: "Inter", fontWeight: 400 }}>이메일로 인증번호 및 결제 안내를 받거나 URL이 포함된 경우</div>
-      <div style={{ width: "46px", height: "55px", left: "974px", top: "187px", position: "absolute", overflow: "hidden" }}>
-        <div style={{ width: "38.33px", height: "36.67px", left: "3.83px", top: "9.17px", position: "absolute", background: "black" }}></div>
-      </div>
-      
-      {/* 상단 네비게이션 메뉴바 */}
-      <Navbar />
     </div>
   );
 }
