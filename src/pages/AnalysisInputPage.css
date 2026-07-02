@@ -1,0 +1,94 @@
+@import '../styles/tokens.css';
+
+.analysis-input-page {
+  width: var(--canvas-width);
+  height: var(--canvas-height);
+  position: relative;
+  background: var(--color-bg-white);
+  overflow: hidden;
+}
+
+.analysis-input-page__panel {
+  width: 1244px;
+  height: 744px;
+  left: 99px;
+  top: 229px;
+  position: absolute;
+  background: rgba(var(--blue-tint-rgb), 0.8);
+  border-radius: var(--radius-pill);
+}
+
+.analysis-input-page__desc {
+  width: 984px;
+  height: 94px;
+  left: 207px;
+  top: 383px;
+  position: absolute;
+  color: var(--color-text-primary);
+  font-size: var(--fs-2xl);
+  font-family: var(--font-primary);
+  font-weight: var(--fw-regular);
+}
+
+.analysis-input-page__textarea {
+  width: 1095px;
+  height: 204px;
+  left: 173px;
+  top: 564px;
+  position: absolute;
+  background: var(--color-bg-white);
+  border-radius: var(--radius-pill);
+  border: none;
+  outline: none;
+  padding: 25px 35px;
+  box-sizing: border-box;
+  font-size: var(--fs-lg);
+  font-family: var(--font-primary);
+  resize: none;
+}
+
+.analysis-input-page__label {
+  width: 503px;
+  height: 94px;
+  left: 207px;
+  top: 506px;
+  position: absolute;
+  color: var(--color-text-primary);
+  font-size: var(--fs-4xl);
+  font-family: var(--font-primary);
+  font-weight: var(--fw-regular);
+}
+
+.analysis-input-page__submit {
+  width: 329px;
+  height: 110px;
+  left: 908px;
+  top: 819px;
+  position: absolute;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-btn-primary);
+}
+
+.analysis-input-page__submit-text {
+  color: var(--color-bg-white);
+  font-size: var(--fs-4xl);
+  font-family: var(--font-primary);
+  font-weight: var(--fw-bold);
+}
+
+.analysis-input-page__title {
+  width: 503px;
+  height: 93px;
+  left: 207px;
+  top: 330px;
+  position: absolute;
+  color: var(--color-text-primary);
+  font-size: var(--fs-4xl);
+  font-family: var(--font-primary);
+  font-weight: var(--fw-bold);
+}

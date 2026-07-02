@@ -1,0 +1,104 @@
+/* ============================================================
+   Trusty Design Tokens
+   Single source of truth for the visual language used across
+   every page. Extracted 1:1 from the existing inline styles —
+   values were NOT changed, only centralized.
+   ============================================================ */
+
+:root {
+  /* ---------- Color: RGB triplets (for rgba() with variable alpha) ---------- */
+  --primary-rgb: 0, 136, 255;       /* #0088FF */
+  --cyan-rgb: 115, 236, 252;        /* #73ECFC */
+  --blue-tint-rgb: 218, 235, 254;   /* light blue card tint (also used as 218.36,235.59,254.02) */
+  --grey-tint-rgb: 217, 217, 217;
+  --dark-rgb: 15, 23, 42;           /* #0F172A shadows */
+  --slate-rgb: 100, 116, 139;       /* #64748B shadows */
+  --danger-rgb: 244, 63, 94;        /* #F43F5E */
+  --success-rgb: 52, 199, 89;       /* #34C759 */
+  --black-rgb: 0, 0, 0;
+
+  /* ---------- Color: solid ---------- */
+  --color-primary: #0088FF;
+  --color-primary-light: #73ECFC;
+  --color-text-primary: #0F172A;
+  --color-text-heading-alt: #1E293B; /* used on card titles */
+  --color-text-secondary: #64748B;
+  --color-text-body: #475569;
+  --color-text-muted: #94A3B8;
+  --color-border: #E2E8F0;
+  --color-bg-page: #F8FAFC;
+  --color-bg-white: #FFFFFF;
+  --color-danger: #F43F5E;
+  --color-danger-strong: #FB1919;   /* brighter red used in Lookup / SearchHistory */
+  --color-success: #34C759;
+  --color-warning: #F59E0B;
+  --color-accent-orange: #FF8D28;
+  --color-news-source: #1E3A8A;
+  --color-black: #000000;           /* legacy literal black used for one inactive tab state */
+
+  /* ---------- Gradients ---------- */
+  --gradient-primary: linear-gradient(135deg, #73ECFC 0%, #0088FF 100%);
+  --gradient-text-primary: linear-gradient(90deg, #0088FF 0%, #73ECFC 100%);
+
+  /* ---------- Tint backgrounds (rgba helpers, use with var(--*-rgb)) ---------- */
+  --tint-blue-strong: rgba(var(--blue-tint-rgb), 0.8);
+  --tint-blue-mid: rgba(var(--blue-tint-rgb), 0.6);
+  --tint-blue-soft: rgba(var(--blue-tint-rgb), 0.5);
+  --tint-blue-faint: rgba(var(--blue-tint-rgb), 0.3);
+  --tint-cyan-soft: rgba(var(--cyan-rgb), 0.2);
+  --tint-cyan-faint: rgba(var(--cyan-rgb), 0.04);
+  --tint-grey-soft: rgba(var(--grey-tint-rgb), 0.5);
+  --tint-danger-soft: rgba(var(--danger-rgb), 0.1);
+  --tint-success-soft: rgba(var(--success-rgb), 0.1);
+
+  /* ---------- Radius scale (kept granular to match original px values exactly) ---------- */
+  --radius-xs: 8px;
+  --radius-sm: 10px;
+  --radius-sm-md: 12px;
+  --radius-md: 14px;
+  --radius-md-lg: 16px;
+  --radius-lg: 20px;
+  --radius-lg-xl: 24px;
+  --radius-xl: 28px;
+  --radius-2xl: 32px;
+  --radius-pill: 40px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  --shadow-panel: 0 20px 40px -15px rgba(var(--dark-rgb), 0.05);
+  --shadow-panel-lg: 0 25px 50px -12px rgba(var(--dark-rgb), 0.08);
+  --shadow-btn-primary: 0 10px 20px -5px rgba(var(--primary-rgb), 0.3);
+  --shadow-btn-primary-soft: 0 10px 20px -5px rgba(var(--primary-rgb), 0.25);
+  --shadow-btn-primary-tag: 0 4px 12px rgba(var(--primary-rgb), 0.2);
+  --shadow-btn-secondary: 0 4px 12px rgba(var(--slate-rgb), 0.15);
+  --shadow-selected-card: 0 10px 25px -5px rgba(var(--primary-rgb), 0.15);
+  --shadow-selected-card-soft: 0 10px 25px -5px rgba(var(--primary-rgb), 0.1);
+  --shadow-post-btn: 0 6px 14px -4px rgba(var(--primary-rgb), 0.35);
+
+  /* ---------- Typography ---------- */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --fs-2xs: 13px;
+  --fs-xs: 14px;
+  --fs-sm: 15px;
+  --fs-base: 16px;
+  --fs-md: 18px;
+  --fs-lg: 20px;
+  --fs-xl: 22px;
+  --fs-2xl: 24px;
+  --fs-3xl: 28px;
+  --fs-4xl: 32px;
+  --fs-5xl: 36px;
+  --fs-6xl: 52px;
+  --fs-hero-score: 84px;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --fw-black: 800;
+  --fw-black-max: 900;
+
+  /* ---------- Canvas ---------- */
+  --canvas-width: 1440px;
+  --canvas-height: 1024px;
+}
