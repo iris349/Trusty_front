@@ -1,176 +1,84 @@
 @import '../styles/tokens.css';
 
 .report-main-page {
-  width: var(--canvas-width);
-  height: var(--canvas-height);
-  position: relative;
+  width: 100%;
+  min-height: 100vh;
   background: var(--color-bg-white);
-  overflow: hidden;
+  position: relative;
+}
+
+.report-main-page__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  padding-top: 140px; /* Navbar 높이만큼 여유 확보 */
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .report-main-page__title {
-  width: 492px;
-  height: 82px;
-  left: 159px;
-  top: 164px;
-  position: absolute;
-  color: var(--color-text-primary);
   font-size: var(--fs-5xl);
-  font-family: var(--font-primary);
   font-weight: var(--fw-black);
+  color: var(--color-text-primary);
+  font-family: var(--font-primary);
+  margin: 0 0 16px 0;
 }
 
 .report-main-page__desc {
-  width: 781px;
-  height: 71px;
-  left: 123px;
-  top: 268px;
-  position: absolute;
-  color: var(--color-text-primary);
   font-size: var(--fs-lg);
+  color: var(--color-text-body);
   font-family: var(--font-primary);
-  font-weight: var(--fw-regular);
+  max-width: 780px;
+  margin: 0 auto 50px auto;
+  line-height: 1.6;
+}
+
+.report-main-page__cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
 .report-main-page__card {
-  width: 363px;
-  height: 334px;
-  top: 367px;
-  position: absolute;
-  background: rgba(var(--blue-tint-rgb), 0.6);
+  width: 350px;
+  height: 300px;
+  background: var(--color-neutral-card-bg);
   border-radius: var(--radius-pill);
-  cursor: pointer;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   box-sizing: border-box;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.report-main-page__card--phone {
-  left: 123px;
-}
-
-.report-main-page__card--sms {
-  left: 543px;
-}
-
-.report-main-page__card--email {
-  left: 1025px;
-}
-
-.report-main-page__card--selected {
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-selected-card);
-}
-
-.report-main-page__submit {
-  width: 434px;
-  height: 110px;
-  left: 503px;
-  top: 782px;
-  position: absolute;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-lg);
-  cursor: pointer;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  box-shadow: var(--shadow-btn-primary);
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.report-main-page__submit-text {
-  color: var(--color-bg-white);
-  font-size: var(--fs-4xl);
-  font-family: var(--font-primary);
+.report-main-page__card:hover {
+  border-color: var(--color-accent-cyan);
+  transform: translateY(-10px);
+}
+
+.report-main-page__card-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--color-text-heading-alt);
+}
+
+.report-main-page__card-title {
+  font-size: var(--fs-2xl);
   font-weight: var(--fw-bold);
-}
-
-.report-main-page__labels {
-  pointer-events: none;
-}
-
-.report-main-page__label {
-  position: absolute;
   color: var(--color-text-primary);
   font-family: var(--font-primary);
+  margin-bottom: 15px;
 }
 
-.report-main-page__label--phone-title {
-  width: 88px;
-  height: 49px;
-  left: 234px;
-  top: 465px;
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-regular);
-}
-
-.report-main-page__label--phone-desc {
-  width: 266px;
-  height: 63px;
-  left: 186px;
-  top: 544px;
-  color: rgba(var(--black-rgb), 0.65);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-regular);
-}
-
-.report-main-page__label--sms-title {
-  width: 190px;
-  height: 35px;
-  left: 660px;
-  top: 462px;
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-regular);
-}
-
-.report-main-page__label--sms-desc {
-  width: 265px;
-  height: 95px;
-  left: 609px;
-  top: 541px;
-  color: rgba(var(--black-rgb), 0.65);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-regular);
-}
-
-.report-main-page__label--email-title {
-  width: 222px;
-  height: 35px;
-  left: 1136px;
-  top: 458px;
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-regular);
-}
-
-.report-main-page__label--email-desc {
-  width: 266px;
-  height: 95px;
-  left: 1084px;
-  top: 537px;
-  color: rgba(var(--black-rgb), 0.65);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-regular);
-}
-
-.report-main-page__icon {
-  position: absolute;
-  color: var(--color-text-primary);
-  line-height: 1;
-}
-
-.report-main-page__icon--phone {
-  left: 186px;
-  top: 465px;
-  font-size: 28px;
-}
-
-.report-main-page__icon--sms {
-  left: 612px;
-  top: 462px;
-  font-size: 26px;
-}
-
-.report-main-page__icon--email {
-  left: 1086px;
-  top: 458px;
-  font-size: 28px;
+.report-main-page__card-desc {
+  font-size: var(--fs-base);
+  color: var(--color-text-body);
+  font-family: var(--font-primary);
+  padding: 0 10px;
+  line-height: 1.5;
 }

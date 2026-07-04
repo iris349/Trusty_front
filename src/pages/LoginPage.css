@@ -58,9 +58,8 @@
 }
 
 .login-input__icon {
-  color: #94A3B8;
+  color: var(--color-text-muted);
   margin-right: 12px;
-  user-select: none;
   flex-shrink: 0;
 }
 
@@ -120,6 +119,7 @@
 .login-card__links {
   display: flex;
   align-items: center;
+  justify-content: center;
   font-size: var(--fs-sm);
   font-family: var(--font-primary);
   color: var(--color-text-secondary);
@@ -132,9 +132,4 @@
 .login-card__link--primary {
   color: var(--color-primary);
   font-weight: 600;
-}
-
-.login-card__divider {
-  margin: 0 16px;
-  color: var(--color-border);
 }

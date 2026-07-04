@@ -7,38 +7,41 @@
 
 :root {
   /* ---------- Color: RGB triplets (for rgba() with variable alpha) ---------- */
-  --primary-rgb: 0, 136, 255;       /* #0088FF */
-  --cyan-rgb: 115, 236, 252;        /* #73ECFC */
-  --blue-tint-rgb: 218, 235, 254;   /* light blue card tint (also used as 218.36,235.59,254.02) */
+  --primary-rgb: 0, 136, 255; /* #0088FF */
+  --cyan-rgb: 115, 236, 252; /* #73ECFC */
+  --blue-tint-rgb:
+    218, 235, 254; /* light blue card tint (also used as 218.36,235.59,254.02) */
   --grey-tint-rgb: 217, 217, 217;
-  --dark-rgb: 15, 23, 42;           /* #0F172A shadows */
-  --slate-rgb: 100, 116, 139;       /* #64748B shadows */
-  --danger-rgb: 244, 63, 94;        /* #F43F5E */
-  --success-rgb: 52, 199, 89;       /* #34C759 */
+  --dark-rgb: 15, 23, 42; /* #0F172A shadows */
+  --slate-rgb: 100, 116, 139; /* #64748B shadows */
+  --danger-rgb: 244, 63, 94; /* #F43F5E */
+  --success-rgb: 52, 199, 89; /* #34C759 */
   --black-rgb: 0, 0, 0;
 
   /* ---------- Color: solid ---------- */
-  --color-primary: #0088FF;
-  --color-primary-light: #73ECFC;
-  --color-text-primary: #0F172A;
-  --color-text-heading-alt: #1E293B; /* used on card titles */
-  --color-text-secondary: #64748B;
+  --color-primary: #0088ff;
+  --color-primary-light: #73ecfc;
+  --color-text-primary: #0f172a;
+  --color-text-heading-alt: #1e293b; /* used on card titles */
+  --color-text-secondary: #64748b;
   --color-text-body: #475569;
-  --color-text-muted: #94A3B8;
-  --color-border: #E2E8F0;
-  --color-bg-page: #F8FAFC;
-  --color-bg-white: #FFFFFF;
-  --color-danger: #F43F5E;
-  --color-danger-strong: #FB1919;   /* brighter red used in Lookup / SearchHistory */
-  --color-success: #34C759;
-  --color-warning: #F59E0B;
-  --color-accent-orange: #FF8D28;
-  --color-news-source: #1E3A8A;
-  --color-black: #000000;           /* legacy literal black used for one inactive tab state */
+  --color-text-muted: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-bg-page: #f8fafc;
+  --color-bg-white: #ffffff;
+  --color-danger: #f43f5e;
+  --color-danger-strong: #fb1919; /* brighter red used in Lookup / SearchHistory */
+  --color-success: #34c759;
+  --color-warning: #f59e0b;
+  --color-accent-orange: #ff8d28;
+  --color-news-source: #1e3a8a;
+  --color-black: #000000; /* legacy literal black used for one inactive tab state */
+  --color-neutral-card-bg: #f1f4f9; /* light grey-blue card bg, used in ReportMainPage cards */
+  --color-accent-cyan: #22d3ee; /* hover-state accent border, ReportMainPage cards */
 
   /* ---------- Gradients ---------- */
-  --gradient-primary: linear-gradient(135deg, #73ECFC 0%, #0088FF 100%);
-  --gradient-text-primary: linear-gradient(90deg, #0088FF 0%, #73ECFC 100%);
+  --gradient-primary: linear-gradient(135deg, #73ecfc 0%, #0088ff 100%);
+  --gradient-text-primary: linear-gradient(90deg, #0088ff 0%, #73ecfc 100%);
 
   /* ---------- Tint backgrounds (rgba helpers, use with var(--*-rgb)) ---------- */
   --tint-blue-strong: rgba(var(--blue-tint-rgb), 0.8);
@@ -76,7 +79,8 @@
   --shadow-post-btn: 0 6px 14px -4px rgba(var(--primary-rgb), 0.35);
 
   /* ---------- Typography ---------- */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-primary:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --fs-2xs: 13px;
   --fs-xs: 14px;
