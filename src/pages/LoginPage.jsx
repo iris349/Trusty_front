@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { login } from '../api/auth';
 import './LoginPage.css';
 
 function LoginPage() {
   const navigate = useNavigate();
   const [rememberId, setRememberId] = useState(false);
   const [rememberPw, setRememberPw] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      setError('');
+      await login(email, password);
+      navigate('/main'); // 실제 이동할 페이지 경로로 필요시 수정
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
     <div className="login-page">
@@ -21,7 +35,13 @@ function LoginPage() {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-            <input type="text" placeholder="아이디를 입력하세요." className="login-input__field" />
+            <input
+              type="text"
+              placeholder="아이디를 입력하세요."
+              className="login-input__field"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
 
           <div className="login-input login-input--password">
@@ -33,6 +53,8 @@ function LoginPage() {
               type="password"
               placeholder="비밀번호를 입력하세요."
               className="login-input__field login-input__field--transparent"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
@@ -56,7 +78,9 @@ function LoginPage() {
           </label>
         </div>
 
-        <button className="login-card__submit">로그인</button>
+        {error && <div className="login-card__error">{error}</div>}
+
+        <button className="login-card__submit" onClick={handleLogin}>로그인</button>
 
         <div className="login-card__links">
           <span className="login-card__link login-card__link--primary" onClick={() => navigate('/signup')}>

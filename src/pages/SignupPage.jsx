@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { signup } from '../api/auth';
 import './SignupPage.css';
 
 function SignupPage() {
@@ -16,7 +17,7 @@ function SignupPage() {
     setForm({ ...form, [field]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.userId.trim() || !form.password || !form.passwordConfirm || !form.email.trim()) {
       alert('모든 항목을 입력해 주세요!');
       return;
@@ -26,9 +27,13 @@ function SignupPage() {
       return;
     }
 
-    // TODO: 백엔드 회원가입 API 연동 지점
-    alert('회원가입이 완료되었습니다.');
-    navigate('/login');
+    try {
+      await signup(form.email, form.password);
+      alert('회원가입이 완료되었습니다.');
+      navigate('/login');
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   return (
