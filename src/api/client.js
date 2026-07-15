@@ -1,11 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-<<<<<<< HEAD
   baseURL: 'https://ranger-jailbird-yarn.ngrok-free.dev',
-=======
-  baseURL: 'http://192.168.0.125:8000',
->>>>>>> 54ef5e0f53c314a96c0f300fe92d037a1f47eb32
   headers: {
     'Content-Type': 'application/json',
   },
